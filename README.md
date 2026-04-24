@@ -8,7 +8,7 @@ Based on arXiv:26XX.XXXXX.
 
 ## Overview
 
-This repository accompanies arXiv:26XX.XXXXX and investigates whether primordial black holes (PBHs) in the mass range of approximately `10^17 – 10^28 g` can form long-lived density spikes around solar-mass PBHs (`M_\odot`).
+This repository accompanies arXiv:26XX.XXXXX and investigates whether primordial black holes (PBHs) in the mass range of approximately $10^{17} – 10^{28}g$ can form long-lived density spikes around solar-mass PBHs ($M_\odot$).
 
 For such spikes to survive, infalling PBHs must acquire sufficient angular momentum to avoid direct capture by the central black hole. 
 
