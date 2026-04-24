@@ -1,28 +1,30 @@
 # Light PBH Spikes
+
 <img width="1366" height="320" alt="Light PBH spikes-2" src="https://github.com/user-attachments/assets/67cc5468-cba6-4619-ab92-de54e353fc8c" />
 
 Based on arXiv:26XX.XXXXX.
 
-Authors: Agnese Tolino, Bradley Kavanagh, Francesca Scarcella, Valentina De Romeri and Daniele Gaggero.
+**Authors:** Agnese Tolino, Bradley Kavanagh, Francesca Scarcella, Valentina De Romeri, and Daniele Gaggero.
 
 ## Overview
 
-The primary goal of arXiv:26XX.XXXXX is to understand how lighter (~ 10$^{17}$ - 10$^{28}$ g) PBHs can avoid capture by a central massive PBH (~ M$\odot$ ) through the generation of angular momentum.
+This repository accompanies arXiv:26XX.XXXXX and investigates whether primordial black holes (PBHs) in the mass range of approximately `10^17 – 10^28 g` can form long-lived density spikes around solar-mass PBHs (`M_\odot`).
 
-The repository focuses on two complementary mechanisms:
+For such spikes to survive, infalling PBHs must acquire sufficient angular momentum to avoid direct capture by the central black hole. 
 
-1. **Numerical simulations (GADGET4)**  
-   A dedicated setup to model light–light PBH gravitational interactions, capturing small-scale perturbations and their role in generating angular momentum.
+Since PBHs may form with negligible peculiar velocities, additional mechanisms are needed to generate the required torque. This project studies those mechanisms through two complementary approaches:
 
-2. **Analytical modeling (notebooks)**  
-   Jupyter notebooks implementing the formulas derived in the associated paper to describe the other contributions to angular momentum growth, such as large-scale DM perturbations and shell capture.
+1. **Numerical simulations (GADGET4) of mutual gravitational interactions**  
+   Dedicated simulations in GADGET4 of PBH gravitational interactions in the presence of a fixed central potential, designed to capture small-scale encounters and their role in angular momentum growth around a heavier PBH.
+
+2. **Analytical modeling of other contributions**  
+   Notebook implementations of the formulas derived in the paper, describing additional sources of torque such as large-scale dark matter perturbations and shell capture. These notebooks also reproduce the main figures of the study.
 
 
 ## Repository Structure
 
-- `gadget_fixed_potential`  
-  GADGET4 setup for simulating light–light PBH gravitational interactions in the presence of a fixed central potential. 
+- **`gadget_fixed_potential`**  
+  A customized GADGET4 setup for simulating light-PBH interactions in the presence of a fixed central gravitational potential.
 
-- `paper_notebooks`  
-  Jupyter notebooks implementing the analytical estimates derived in the paper for the remaining contributions to angular momentum. These notebooks also reproduce the main figures of the paper.
-
+- **`paper_notebooks`**  
+  Jupyter notebooks containing the analytical calculations presented in the paper, together with scripts to reproduce its main results and figures.
