@@ -1,10 +1,8 @@
 # N-body simulations of gravitationally interacting PBHs in a fixed potential
 
-This repository provides scripts, notebooks, and configuration files to generate the initial conditions and then run N-body simulations with GADGET4 to study the formation of light primordial black hole (PBH) spikes around a massive central PBH represented by a fixed central potential.
+This repository provides the configuration and initial conditions files to run N-body simulations in GADGET4 of light primordial black hole (PBH) spikes around a central solar mass PBH, represented by a fixed central potential.
 
-We first present a quick-start guide that assumes GADGET4, conda, and screen are already installed. Further below, we provide instructions on how to install these tools and any additional packages required to run the simulations.
-
-We then describe the contents of the repository in more detail.
+We first present a quick-start guide that assumes GADGET4, conda, and screen are already installed. Further below, we provide more detailed instructions on how to install these tools and any additional packages required to run the simulations.
 
 
 ## THE LONG STORY SHORT (QUICK START)
