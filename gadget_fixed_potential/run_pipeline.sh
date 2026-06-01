@@ -1,27 +1,19 @@
 #!/bin/bash
 
-#-----------------------------------------------------------
-#Runs the full pipeline for a GADGET4 simulation with a fixed potential, including:
+# Run GADGET4 simulation pipeline with fixed potential.
+# This script runs the full pipeline for a GADGET4 simulation with a fixed potential:
 # 1) Initial conditions generation
 # 2) GADGET parameter file (param.txt) update with specific values for the simulation
 # 3) GADGET4 execution with MPI
+#
+# Usage: ./run_pipeline.sh <run_name> <mass_ratio> <num_particles>
 
-# -------------------------------------------
-
-
-# Thid Exit immediately if:
+# Exit immediately if:
 #  - a command fails (-e)
 #  - an undefined variable is used (-u)
 #  - any command in a pipeline fails (-o pipefail)
 set -euo pipefail
 
-# ============================================================
-# Argument parsing
-# ============================================================
-# Expected arguments:
-#   1) run_name       : label for the run (currently not used internally)
-#   2) mass_ratio     : PBH mass ratio passed to IC generation
-#   3) num_particles : number of particles in the simulation
 if [ $# -lt 3 ]; then
     echo "❌ Usage: ./run_pipeline.sh <run_name> <mass_ratio> <num_particles>"
     exit 1
@@ -31,35 +23,16 @@ RUN_NAME="$1"
 MASS_RATIO="$2"
 NUM_PARTICLES="$3"
 
-# ============================================================
-# Input validation
-# ============================================================
-# Ensure the number of particles is a valid integer >= 2
 if ! [[ "$NUM_PARTICLES" =~ ^[0-9]+$ ]] || [ "$NUM_PARTICLES" -lt 2 ]; then
     echo "❌ num_particles must be an integer >= 2 (got: $NUM_PARTICLES)"
     exit 1
 fi
 
-# ============================================================
-# Cleanup
-# ============================================================
-# Remove previous output directory if it exists to ensure a clean run
 rm -rf ./output
 
-# ============================================================
-# Initial conditions generation
-# ============================================================
-# Generate initial conditions using the specified mass ratio and
-# number of particles
 python3 initial_conditions.py "$MASS_RATIO" "$NUM_PARTICLES"
 
 
-# ============================================================
-# Parameter file update (in-place)
-# ============================================================
-# This inline Python script:
-#   - Backs up param.txt
-#   - Updates selected GADGET parameters
 python3 - "$MASS_RATIO" "param.txt" <<'PY'
 import sys, os, shutil, time
 
@@ -103,16 +76,6 @@ with open(param_path, 'w') as f:
     f.writelines(new_lines)
 PY
 
-# ============================================================
-# Run GADGET4
-# ============================================================
-# Launch GADGET4 with MPI:
-#   - nice lowers priority
-#   - 32 MPI ranks - change as needed for your system
-#   - allow use of hardware threads
 nice -n 19 mpirun -np 32 --use-hwthread-cpus ./Gadget4 param.txt
 
-# ============================================================
-# Exit successfully
-# ============================================================
 exit 0

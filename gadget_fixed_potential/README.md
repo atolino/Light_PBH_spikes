@@ -59,21 +59,20 @@ This directory contains all files needed to generate initial conditions,
 run GADGET simulations, and analyze the results.
 
 Main files:
-- run_pipeline.sh <br>
-    This script automates the full workflow for running a GADGET4 simulation of PBH systems.
-    Usage: <br>
-    ./run_pipeline.sh <run_name> <mass_ratio> <num_particles> <br>
-   Requirements:<br>
-   python3<br>
-   mpirun (MPI)<br>
-   Compiled Gadget4 executable in the working directory <br>
-   Input files: <br>
-   initial_conditions.py <br>
-   param.txt <br>
+- analysis/units.py <br>
+  Utility files for units and snapshot loading.
 
-- initial_conditions_ta.py <br>
-  Generates and analyzes the initial conditions for a system with N−1 light
-  PBHs and one heavy central PBH. The initial density is given at turnaround.
+- generate_beta_l_ta.py <br>
+   Evaluates the angular momentum and initial torque fraction beta = tau/tau_c from the GADGET simulations.
+
+- pdf_beta_ta.py <br>
+   Evaluates the probability distribution function of the initial beta.
+
+- pdf_l_ta.py <br>
+   Evaluates the probability distribution function of the angular momentum.
+
+- run_pipeline.sh <br>
+   Automates the full workflow for running a GADGET4 simulation of PBH systems.
 
 - param.txt <br>
   Parameter file used by GADGET.
@@ -81,8 +80,9 @@ Main files:
 - Config.sh <br>
   Configuration file used by GADGET.
 
-- analysis/units.py <br>
-  Utility files for units and snapshot loading.
+- ta_initial_condition.py <br>
+    Generates and analyzes the initial conditions for a system with N−1 light
+  PBHs and one heavy central PBH. The initial density is given at turnaround.
 
 
 

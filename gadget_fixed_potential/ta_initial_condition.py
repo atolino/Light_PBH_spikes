@@ -2,31 +2,12 @@
 Generates initial conditions for a spike-like distribution of light PBHs in a
 fixed central potential, with n(r) ∝ r^{-9/4}.
 
-This script creates an HDF5 file with initial particle positions and velocities
-for Gadget-4 simulations. Particles are distributed with a power-law density
-profile characteristic of gravitational capture in a spike around a central
-black hole. The distribution is sampled uniformly in the transformed coordinate
-x = r^(3/4) to maintain the desired density profile.
-
 Usage
 -----
     python ta_initial_condition.py [mass_ratio] [num_particles]
-    
-Arguments
----------
-    mass_ratio : float, optional
-        Ratio of light PBH mass to central heavy PBH mass (default: 0.001).
-    num_particles : int, optional
-        Number of particles to generate (default: 1000).
 
-Output
-------
-    IC_newton.hdf5 : Gadget-4 initial condition file
-    t_collapse.txt : Collapse time in code units and seconds
 """
 
-#-------
-# ---
 import numpy as np
 import h5py
 from matplotlib import pyplot as plt
@@ -39,8 +20,6 @@ import units as u
 FloatType = np.float64
 IntType = np.int32
 
-# Section: Parameters
-# ---
 filename = "IC_newton.hdf5"
 
 # Command-line arguments: mr & N of particles
@@ -58,12 +37,10 @@ else:
 if number_particles < 2:
     raise ValueError("number_particles must be >= 2")
 
-# Section: Physical setup
-# ---
-M_heavy = 1.0 * u.Msun # Heavy PBH of solar mass
-m = mass_ratio * M_heavy # N light PBHs; mr is a command-line argument
+M_heavy = 1.0 * u.Msun  # Heavy PBH of solar mass
+m = mass_ratio * M_heavy  # N light PBHs; mr is a command-line argument
 
-r_s = 2 * u.G * M_heavy / u.c**2
+r_s = 2 * u.G * M_heavy / u.c ** 2
 
 L = 1e-2 * u.pc
 r_min = 300.0 * r_s
@@ -72,8 +49,6 @@ r_max = L
 if r_min >= r_max:
     raise ValueError("r_min must be smaller than r_max")
 
-# Section: Allocate arrays
-# ---
 Pos = np.zeros((number_particles, 3), dtype=FloatType)
 Vel = np.zeros((number_particles, 3), dtype=FloatType)
 Mass = np.zeros((number_particles, 1), dtype=FloatType)
@@ -81,8 +56,6 @@ ids = np.arange(number_particles, dtype=IntType)
 
 Mass[:] = m
 
-# Section: Shell-based sampling enforcing n(r) ∝ r^{-9/4}
-# ---
 np.random.seed(42)
 
 # Transform variable x = r^{3/4}
@@ -121,24 +94,20 @@ for i in range(Nshell):
 
     idx += Ni
 
-# Safety check: no nans 
+# Safety check: no nans
 if not np.isfinite(Pos).all():
     raise ValueError("Non-finite positions generated")
 
-# Section: Time of collapse
-# ---
-radius = np.sqrt(np.sum(Pos**2, axis=1))
+radius = np.sqrt(np.sum(Pos ** 2, axis=1))
 r_max_actual = radius.max()
 
-V = (4*np.pi/3) * r_max_actual**3
+V = (4 * np.pi / 3) * r_max_actual ** 3
 rho_uniform = (m * number_particles) / V
 
 Tcoll = float(
-    np.sqrt(3*np.pi / (32 * u.G * rho_uniform)) / u.Tcode
+    np.sqrt(3 * np.pi / (32 * u.G * rho_uniform)) / u.Tcode
 )
 
-# Section: Write HDF5 IC file
-# ---
 IC = h5py.File(filename, "w")
 
 header = IC.create_group("Header")
@@ -173,8 +142,6 @@ part1.create_dataset("Velocities", data=Vel / u.Vcode)
 
 IC.close()
 
-# Section: Save collapse time
-# ---
 t_collapse_code = float(Tcoll)
 t_collapse_seconds = float(Tcoll * u.Tcode)
 
