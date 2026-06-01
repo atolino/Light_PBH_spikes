@@ -27,7 +27,7 @@ Assuming GADGET4, conda, and screen are already installed and working:
        - the compiled `Gadget4` executable
        - `run_pipeline.sh`
        - `param.txt`
-       - `initial_conditions.py`
+       - `initial_conditions_ta.py`
       - any analysis scripts (i.e. `analysis.py` and `units.py`)
 
 3. Make the pipeline executable: <br>
