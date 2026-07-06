@@ -29,12 +29,11 @@ A customized version of GADGET4 for simulating light-PBH dynamics in the gravita
 
 ## Citation and ownership
 
-If you use the content of this repository, please cite **2606.25031**:
-- %\cite{Tolino:2026zth}
-\bibitem{Tolino:2026zth}
+If you use the content of this repository, please cite **2606.25031**: <br>
+ %\cite{Tolino:2026zth} <br>
+\bibitem{Tolino:2026zth} <br>
 A.~Tolino, F.~Scarcella, B.~J.~Kavanagh, V.~De Romeri and D.~Gaggero,
 %``The swallowed spike: the formation of light primordial black hole structures around heavy seeds,''
 [arXiv:2606.25031 [astro-ph.CO]].
-%0 citations counted in INSPIRE as of 06 Jul 2026
 
 
