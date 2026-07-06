@@ -27,6 +27,8 @@ References: <br>
 A customized version of GADGET4 for simulating light-PBH dynamics in the gravitational field of a fixed central black hole. The code is optimized to study close encounters and angular momentum generation..
 
 
+## Citation and ownership
+
 If you use the content of this repository, please cite **2606.25031**.
 
 
