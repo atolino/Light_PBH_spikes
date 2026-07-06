@@ -2,7 +2,7 @@
 
 <img width="1366" height="320" alt="Light PBH spikes-2" src="https://github.com/user-attachments/assets/67cc5468-cba6-4619-ab92-de54e353fc8c" />
 
-Based on **arXiv:26XX.XXXXX**.
+Based on **arXiv:2606.25031**.
 
 **Authors:** Agnese Tolino, Francesca Scarcella, Bradley Kavanagh, Valentina De Romeri, and Daniele Gaggero
 
@@ -25,5 +25,8 @@ References: <br>
 ### `gadget_fixed_potential`
 
 A customized version of GADGET4 for simulating light-PBH dynamics in the gravitational field of a fixed central black hole. The code is optimized to study close encounters and angular momentum generation..
+
+
+If you use the content of this repository, please cite **2606.25031**.
 
 
